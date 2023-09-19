@@ -1,6 +1,8 @@
 package br.senai.sp.jandira.model;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Veiculo {
@@ -8,10 +10,13 @@ public class Veiculo {
     double preco;
     int ano;
 
-    /** Instancia Scanner */
+    /**
+     * Instancia Scanner
+     */
     Scanner teclado = new Scanner(System.in);
+    List<Veiculo> listVeiculos = new ArrayList();
 
-    public void CadastarVeiculo(){
+    public void CadastarVeiculo() {
 
         System.out.println("---------  Cadastro Veiculo  ---------");
         System.out.println("Informe a Marca: ");
@@ -27,14 +32,30 @@ public class Veiculo {
         System.out.println("Informe o Preço: ");
         preco = teclado.nextDouble();
         teclado.nextLine();
+        System.out.println("Informe a Placa:");
+        placa = teclado.nextLine();
         System.out.println("--------  Cadastro Finalizado  ---------");
         System.out.println("----------------------------------------");
-
-        teclado.close();
 
 
     }
 
+    public void adicionarVeiculo(Veiculo objVeiculo) {
+        listVeiculos.add(objVeiculo);
+    }
 
+    public void listVeiculos() {
+        for (Veiculo objVeiculo : listVeiculos) {
+            System.out.println(objVeiculo.modelo);
+        }
+    }
 
+    public boolean pesquisarVeiculo(String veiculoPesquisado) {
+        for (Veiculo objVeiculo : listVeiculos) {
+
+            if (objVeiculo.modelo.equalsIgnoreCase(veiculoPesquisado)) ;
+            return true;
+        }
+        return false;
+    }
 }
